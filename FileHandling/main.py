@@ -7,9 +7,9 @@ print("*" * 35)
 print("EXERCISE 1")
 print("*" * 35 + "\n")
 
-with open("exercise1.txt", "w") as f:
-    f_contents = f.read()
-    print(f_contents)
+with open("exercise1.txt", "r") as f:
+  f_contents = f.read()
+  print(f_contents)
 
 print()
 
@@ -37,10 +37,10 @@ print(f_contents, end="*")
 # print the next 20 characters
 print("\n\nCharacters 0-19 and 45-65")
 f.seek(0)
-f_contents = f.read(-1)  # TODO: Replace -1 with correct number
+f_contents = f.read(20)  # TODO: Replace -1 with correct number
 print(f_contents)
-f.seek(-1)  # TODO: Replace -1 with correct number
-f_contents = f.read(-1)  # TODO: Replace -1 with correct number
+f.seek(45)  # TODO: Replace -1 with correct number
+f_contents = f.read(20)  # TODO: Replace -1 with correct number
 print(f_contents)
 
 f.seek(0)
@@ -49,8 +49,8 @@ print()
 # Read the entire file into a string
 # and print the last 21 characters
 f_contents = f.read()
-start = -1  # TODO: How would we determine the start and finish?
-end = -1
+start = -21  # TODO: How would we determine the start and finish?
+end = len(f_contents)
 print(f_contents[start:end])
 
 f.close()
@@ -71,7 +71,17 @@ print("*" * 35 + "\n")
 read_file = open("exercise3.txt", "r")
 write_file = open("result.txt", "w")
 # TODO: Iterate over read file and write to the write file
+for line in read_file.readlines():
+  print(line)
+  write_file.write(line)
+
+read_file.seek(0)
+result_file = open("result.txt", "r")
+result_file.seek(0)
+
+print(f"read: {len(read_file.read())}, write: {len(result_file.read())}")
 
 read_file.close()
 write_file.close()
+result_file.close()
 print("Exercise 3 complete.")
